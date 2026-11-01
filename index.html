@@ -335,6 +335,74 @@ box-shadow: 0 14px 40px rgba(0, 0, 0, .55); padding: 6px; }
 font-family: var(--f-ui); font-weight: 800; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; }
 .onglet svg { width: 22px; height: 22px; }
 .onglet[aria-current="page"] { color: var(--sur-vert); background: linear-gradient(180deg, var(--menthe), var(--emeraude)); }
+.nuit2 { position: relative; margin-top: 48px; padding: 30px 18px 92px; border-radius: 30px; overflow: hidden; display: grid; gap: 26px;
+  background: radial-gradient(70% 50% at 50% 45%, rgba(0, 200, 120, .12), transparent 70%), linear-gradient(180deg, #010302, #030806); box-shadow: inset 0 0 0 1px rgba(46, 230, 160, .16); }
+.ciel { position: absolute; inset: 0; pointer-events: none; }
+.ciel i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; animation: clign 3s ease-in-out infinite; }
+@keyframes clign { 0%, 100% { opacity: .25; } 50% { opacity: .95; } }
+.lune { position: absolute; top: 16px; right: 16px; width: 62px; height: 62px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fbfdfc, #d9e2de 60%, #a9b8b2);
+  box-shadow: 0 0 34px rgba(232, 238, 236, .35), inset -6px -6px 12px rgba(0, 0, 0, .12); animation: flotte 6s ease-in-out infinite; }
+.lune svg { width: 100%; height: 100%; }
+.nuit2-texte { position: relative; display: grid; justify-items: start; gap: 12px; }
+.badge-nuit { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 6px; border-radius: 999px; background: rgba(6, 40, 26, .55); box-shadow: inset 0 0 0 1.5px rgba(46, 230, 160, .55);
+  font-family: var(--f-ui); font-weight: 800; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--menthe); }
+.mini-visage { width: 26px; height: 26px; border-radius: 50%; background: #0a0f0c; display: grid; place-items: center; }
+.mini-visage svg { width: 24px; height: 24px; }
+.pts { display: inline-flex; gap: 3px; margin-left: -4px; }
+.pts i { width: 3px; height: 3px; border-radius: 50%; background: var(--menthe); animation: clign 1.2s ease-in-out infinite; }
+.pts i:nth-child(2) { animation-delay: .2s; } .pts i:nth-child(3) { animation-delay: .4s; }
+.horloge2 { font-family: var(--f-titre); font-size: clamp(76px, 24vw, 108px); line-height: .9; color: var(--blanc); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.slogan-nuit { font-size: clamp(30px, 9vw, 40px); line-height: 1; letter-spacing: -.01em; }
+.slogan-nuit em { font-style: normal; color: var(--menthe); }
+.total-nuit { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.total-nuit b { font-family: var(--f-titre); font-weight: 400; font-size: clamp(48px, 15vw, 64px); line-height: 1; color: var(--menthe); text-shadow: 0 0 26px rgba(46, 230, 160, .45); font-variant-numeric: tabular-nums; }
+.total-nuit span { font-family: var(--f-ui); font-weight: 800; font-size: 16px; letter-spacing: .06em; text-transform: uppercase; color: var(--doux); }
+.rejouer { color: var(--menthe); text-decoration: underline; text-underline-offset: 3px; font-family: var(--f-ui); font-weight: 700; }
+.tel { position: relative; width: min(100%, 320px); justify-self: center; border-radius: 42px; padding: 9px; background: linear-gradient(160deg, #26332e, #0b100e 40%, #18211d);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .06), 0 30px 60px rgba(0, 0, 0, .65), 0 0 90px rgba(0, 200, 120, .16); }
+.tel-ecran { position: relative; border-radius: 34px; overflow: hidden; background: #0d1411; }
+.tel-encoche { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 92px; height: 24px; border-radius: 14px; background: #000; z-index: 2; }
+.tel-tete { display: flex; align-items: center; gap: 9px; padding: 42px 14px 10px; border-bottom: 1px solid rgba(255, 255, 255, .06); background: #111a16; }
+.tel-tete .ret { font-size: 24px; line-height: 1; color: var(--doux); }
+.av { width: 34px; height: 34px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 2px var(--emeraude); background: #031a10; flex: none; }
+.av img { width: 100%; height: 100%; object-fit: cover; }
+.tel-tete .nom { flex: 1; min-width: 0; display: grid; line-height: 1.15; }
+.tel-tete .nom b { font-family: var(--f-ui); font-weight: 800; font-size: 15px; }
+.tel-tete .nom small { font-size: 12px; color: var(--gris); }
+.pts3 { color: var(--doux); font-size: 20px; }
+.tel-fil { height: 360px; display: flex; flex-direction: column; justify-content: flex-end; gap: 7px; padding: 10px 10px 12px; overflow: hidden; }
+.ligne-msg { display: flex; align-items: flex-end; gap: 6px; animation: notif .45s cubic-bezier(.2, .9, .3, 1.2) both; }
+.av-mini { width: 24px; height: 24px; flex: none; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 1.5px var(--emeraude); background: #031a10; }
+.av-mini img { width: 100%; height: 100%; object-fit: cover; }
+.bul { max-width: 84%; background: #1a2420; border-radius: 14px 14px 14px 4px; padding: 8px 10px 6px; font-size: 13.5px; line-height: 1.28; color: var(--argent); }
+.bul small { display: flex; align-items: center; gap: 5px; margin-bottom: 4px; font-family: var(--f-ui); font-weight: 800; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--blanc); }
+.bul small svg { width: 13px; height: 13px; color: var(--menthe); }
+.bul time { display: block; text-align: right; font-size: 10.5px; color: var(--gris); margin-top: 2px; }
+.bul .v { color: var(--menthe); }
+.bul .det { display: block; font-size: 12px; color: var(--gris); }
+.bul.ok { box-shadow: inset 3px 0 0 var(--menthe); }
+.btn-inline { max-width: 84%; flex: 1; text-align: center; padding: 8px; border-radius: 10px; background: #1a2420; font-family: var(--f-ui); font-weight: 800; font-size: 13px; position: relative; }
+.btn-inline::after { content: "↗"; position: absolute; top: 3px; right: 6px; font-size: 10px; color: var(--gris); }
+.etoiles { display: flex; gap: 5px; }
+.etoiles i { width: 28px; height: 28px; border-radius: 9px; background: #1a2420; display: grid; place-items: center; font-style: normal; color: #f5c542; font-size: 15px; }
+.chip { align-self: center; display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; font-family: var(--f-ui); font-weight: 700; font-size: 13px; color: var(--menthe-claire);
+  background: rgba(6, 40, 26, .7); box-shadow: inset 0 0 0 1px rgba(46, 230, 160, .45); animation: notif .45s cubic-bezier(.2, .9, .3, 1.2) both; }
+.chip svg { width: 14px; height: 14px; }
+.chip b { color: var(--menthe); }
+.tel-bas { display: flex; align-items: center; gap: 8px; padding: 10px 12px 14px; border-top: 1px solid rgba(255, 255, 255, .06); color: var(--gris); }
+.menu-btn { padding: 6px 13px; border-radius: 999px; background: var(--emeraude); color: var(--sur-vert); font-family: var(--f-ui); font-weight: 800; font-size: 13px; }
+.champ-msg { flex: 1; font-size: 13px; }
+.tel-bas svg { width: 18px; height: 18px; }
+.persos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: end; }
+.persos figure { margin: 0; display: grid; justify-items: center; gap: 10px; }
+.persos img { width: min(130px, 100%); filter: drop-shadow(0 10px 24px rgba(0, 200, 120, .35)); animation: flotte 4.4s ease-in-out infinite; }
+.persos figure + figure img { animation-delay: .8s; }
+.persos figcaption { padding: 7px 14px; border-radius: 999px; background: var(--blanc); color: var(--emeraude); font-family: var(--f-ui); font-weight: 800; font-size: 13.5px; letter-spacing: .04em; text-transform: uppercase; text-align: center; box-shadow: 0 0 0 3px rgba(46, 230, 160, .25); }
+.persos figcaption b { color: #0a0f0c; margin-right: 4px; }
+.dormeur { position: absolute; left: 14px; bottom: 12px; width: 62px; height: 62px; filter: drop-shadow(0 0 16px rgba(46, 230, 160, .45)); animation: respire-tete 3.4s ease-in-out infinite; }
+.dormeur > svg { width: 100%; height: 100%; }
+.dormeur .dodo { top: -46px; left: 46px; }
+@keyframes respire-tete { 0%, 100% { transform: scale(1) rotate(-4deg); } 50% { transform: scale(1.05) rotate(2deg); } }
 @media (prefers-reduced-motion: reduce) {
 *, *::before, *::after { animation: none !important; transition: none !important; }
 }
@@ -384,23 +452,29 @@ font-family: var(--f-ui); font-weight: 800; font-size: 11.5px; letter-spacing: .
 <div class="atout"><b>2X</b><span>paiement 50 % / 50 %</span></div>
 <div class="atout"><b>.FR</b><span>nom de domaine offert</span></div>
 </div>
-<section class="section" aria-labelledby="t-nuit">
-<header>
-<span class="surtitre" style="width:fit-content">Pendant que tu dors…</span>
-<h2 id="t-nuit">Ton bot vend.<br><span class="vert">Toi, tu dors.</span></h2>
-</header>
-<div class="nuit">
-<div class="haut">
-<div><div class="horloge" id="horloge">23:00</div><div class="legende">Simulation d'une nuit type</div></div>
-<span class="zz-wrap"><img class="zz" src="https://onlyweb-telegram-atelier.lovable.app/mascots/colis.svg" alt=""><span class="dodo" aria-hidden="true"><i>z</i><i>z</i><i>Z</i><svg class="etin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 2c.6 5.4 4.6 9.4 10 10-5.4.6-9.4 4.6-10 10-.6-5.4-4.6-9.4-10-10 5.4-.6 9.4-4.6 10-10z"/></svg></span></span>
-<button class="btn btn-contour btn-petit" id="rejouer">Rejouer</button>
+<section class="nuit2" aria-labelledby="t-nuit">
+<div class="ciel" aria-hidden="true" id="ciel"></div>
+<span class="lune" aria-hidden="true"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="20" cy="22" r="5" fill="#b9c6c1" opacity=".55"/><circle cx="44" cy="44" r="7" fill="#b9c6c1" opacity=".45"/><circle cx="46" cy="18" r="3" fill="#b9c6c1" opacity=".5"/><path d="M19 33 q4 4 8 0 M37 33 q4 4 8 0" fill="none" stroke="#5d6b66" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="16" cy="40" rx="4.5" ry="2.6" fill="#2ee6a0" opacity=".55"/><ellipse cx="48" cy="40" rx="4.5" ry="2.6" fill="#2ee6a0" opacity=".55"/><path d="M29 41 q3 2 6 0" fill="none" stroke="#5d6b66" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+<div class="nuit2-texte">
+<span class="badge-nuit"><span class="mini-visage"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="gv" cx=".35" cy=".3"><stop offset="0" stop-color="#7bf7cb"/><stop offset="1" stop-color="#00c878"/></radialGradient></defs><circle cx="32" cy="36" r="24" fill="url(#gv)" stroke="#0a0f0c" stroke-width="3"/><path d="M18 18 Q30 2 50 14 L44 22 Q32 14 22 24 Z" fill="#f4f7f6" stroke="#0a0f0c" stroke-width="2.5" stroke-linejoin="round"/><circle cx="52" cy="13" r="4.5" fill="#f4f7f6" stroke="#0a0f0c" stroke-width="2.5"/><path d="M21 36 q4 4 8 0 M35 36 q4 4 8 0" fill="none" stroke="#0a0f0c" stroke-width="2.8" stroke-linecap="round"/><circle cx="32" cy="46" r="3" fill="#0a0f0c"/><ellipse cx="18" cy="42" rx="4" ry="2.5" fill="#f4f7f6" opacity=".45"/><ellipse cx="46" cy="42" rx="4" ry="2.5" fill="#f4f7f6" opacity=".45"/></svg></span>Pendant que tu dors<span class="pts"><i></i><i></i><i></i></span></span>
+<div class="horloge2" id="horloge">23:00</div>
+<h2 id="t-nuit" class="slogan-nuit">Ton bot <em>vend.</em><br>Ton site <em>encaisse.</em><br>Toi, tu <em>dors.</em></h2>
+<div class="total-nuit"><b id="c-euros">0 €</b><span id="c-cmd">0 commande</span></div>
+<div class="legende">Simulation d'une nuit type · <button type="button" id="rejouer" class="rejouer">Rejouer</button></div>
 </div>
-<div class="compteurs">
-<div class="compteur"><small>Encaissé</small><b id="c-euros">0 €</b></div>
-<div class="compteur"><small>Commandes</small><b id="c-cmd">0</b></div>
+<div class="tel" role="img" aria-label="Simulation : le bot gère les commandes pendant la nuit">
+<div class="tel-ecran">
+<span class="tel-encoche"></span>
+<div class="tel-tete"><span class="ret">‹</span><span class="av"><img src="https://onlyweb-telegram-atelier.lovable.app/brand/ow-logo.png" alt=""></span><div class="nom"><b>Ton Shop | Commandes</b><small>bot</small></div><span class="pts3">⋮</span></div>
+<div class="tel-fil" id="fil"></div>
+<div class="tel-bas"><span class="menu-btn">Menu</span><span class="champ-msg">Écrivez un message…</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
 </div>
-<div class="flux" id="flux" aria-live="polite"></div>
 </div>
+<div class="persos">
+<figure><img src="https://onlyweb-telegram-atelier.lovable.app/mascots/botty.svg" alt=""><figcaption><b>Botty</b> répond 24/7</figcaption></figure>
+<figure><img src="https://onlyweb-telegram-atelier.lovable.app/mascots/colis.svg" alt=""><figcaption><b>Colis</b> livre chaque commande</figcaption></figure>
+</div>
+<div class="dormeur" aria-hidden="true"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="gv" cx=".35" cy=".3"><stop offset="0" stop-color="#7bf7cb"/><stop offset="1" stop-color="#00c878"/></radialGradient></defs><circle cx="32" cy="36" r="24" fill="url(#gv)" stroke="#0a0f0c" stroke-width="3"/><path d="M18 18 Q30 2 50 14 L44 22 Q32 14 22 24 Z" fill="#f4f7f6" stroke="#0a0f0c" stroke-width="2.5" stroke-linejoin="round"/><circle cx="52" cy="13" r="4.5" fill="#f4f7f6" stroke="#0a0f0c" stroke-width="2.5"/><path d="M21 36 q4 4 8 0 M35 36 q4 4 8 0" fill="none" stroke="#0a0f0c" stroke-width="2.8" stroke-linecap="round"/><circle cx="32" cy="46" r="3" fill="#0a0f0c"/><ellipse cx="18" cy="42" rx="4" ry="2.5" fill="#f4f7f6" opacity=".45"/><ellipse cx="46" cy="42" rx="4" ry="2.5" fill="#f4f7f6" opacity=".45"/></svg><span class="dodo" aria-hidden="true"><i>z</i><i>z</i><i>Z</i><svg class="etin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 2c.6 5.4 4.6 9.4 10 10-5.4.6-9.4 4.6-10 10-.6-5.4-4.6-9.4-10-10 5.4-.6 9.4-4.6 10-10z"/></svg></span></div>
 </section>
 <section class="section" aria-labelledby="t-pourquoi">
 <header><h2 id="t-pourquoi">Pourquoi <span class="vert">ONLYWEB</span> ?</h2></header>
@@ -626,31 +700,50 @@ const mots = ["Site web", "Bot Telegram", "Flyer animé", "Panel de gestion"];
 const html = mots.map(m => `<span>${m}</span><span class="s">✦</span>`).join("");
 document.getElementById("defile").innerHTML = html + html;
 })();
-const NUIT = [["23:16", "@lucas_tg", "Pack Premium", 90], ["00:58", "@sarah.vx", "Pack Duo", 45], ["01:44", "@mehdi_off", "Pack Mystère", 60],
-["02:31", "@julie.drw", "Pack Solo", 35], ["03:22", "@k3vin", "Pack Mystère ×2", 120], ["04:10", "@ines.lc", "Pack Duo", 45],
-["05:03", "@nathan.trk", "Pack Solo + Duo", 80], ["06:24", "@yanis_77", "Pack Solo ×2", 70]];
+const LOGO = "https://onlyweb-telegram-atelier.lovable.app/brand/ow-logo.png";
+const MI = {
+lien: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>',
+ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>',
+colis: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg>',
+panier: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 8H6"/></svg>'
+};
+const SCENE = [
+[15, "msg", `<small>${MI.lien}Paiement PayPal</small>Voici ton lien de paiement ↓<br><br>Mets ton <b>nom Telegram</b> en commentaire, je détecte ton paiement automatiquement.<time>23:15</time>`],
+[15, "bouton", "Payer 90 € sur PayPal"],
+[16, "ok", `<small>${MI.ok}Paiement reçu</small>Commande <b>#1024</b> · <b class="v">90 €</b><span class="det">Détecté via commentaire : @lucas_tg</span><time>23:16</time>`, 90],
+[17, "msg", `<small>${MI.colis}Commande envoyée</small>Merci pour ta confiance <span class="v">♥</span><br>Tu nous laisses un avis ?<time>23:16</time>`],
+[18, "etoiles"],
+[118, "chip", "#1025", 45, "00:58"], [164, "chip", "#1026", 60, "01:44"], [211, "chip", "#1027", 35, "02:31"], [262, "chip", "#1028", 120, "03:22"],
+[310, "chip", "#1029", 45, "04:10"], [363, "chip", "#1030", 80, "05:03"], [444, "chip", "#1031", 70, "06:24"]
+];
+(function () {
+const c = document.getElementById("ciel");
+for (let i = 0; i < 40; i++) { const e = document.createElement("i"); e.style.left = Math.random() * 100 + "%"; e.style.top = Math.random() * 100 + "%"; e.style.animationDelay = (Math.random() * 3).toFixed(2) + "s"; c.appendChild(e); }
+})();
 let minuteur = null;
 function nuit() {
 clearInterval(minuteur);
-const flux = document.getElementById("flux"), h = document.getElementById("horloge");
-flux.innerHTML = ""; let euros = 0, n = 0, i = 0, minute = 23 * 60;
-document.getElementById("c-euros").textContent = "0 €"; document.getElementById("c-cmd").textContent = "0";
+const fil = document.getElementById("fil"), h = document.getElementById("horloge");
+fil.innerHTML = ""; let euros = 0, n = 0, i = 0, minute = 0;
+const maj = () => { document.getElementById("c-euros").textContent = euros + " €"; document.getElementById("c-cmd").textContent = n + (n > 1 ? " commandes" : " commande"); };
+maj();
+const avatar = `<span class="av-mini"><img src="${LOGO}" alt=""></span>`;
+const ajouter = html => { fil.insertAdjacentHTML("beforeend", html); while (fil.children.length > 9) fil.firstElementChild.remove(); };
 const reduit = matchMedia("(prefers-reduced-motion: reduce)").matches;
 minuteur = setInterval(() => {
-minute += reduit ? 120 : 11;
-const m = minute % (24 * 60);
-const hh = String(Math.floor(m / 60)).padStart(2, "0"), mm = String(m % 60).padStart(2, "0");
-h.textContent = `${hh}:${mm}`;
-while (i < NUIT.length && ((+NUIT[i][0].slice(0, 2) + 24 - 23) % 24) * 60 + +NUIT[i][0].slice(3) <= minute - 23 * 60) {
-const [heure, qui, quoi, prix] = NUIT[i++];
-euros += prix; n += 1;
-const d = document.createElement("div"); d.className = "notif";
-d.innerHTML = `<span class="pastille">${ICONES.coche}</span><span class="t"><b>Nouvelle commande</b><span>${quoi} · ${qui} · ${heure}</span></span><em>+${prix} €</em>`;
-flux.prepend(d); while (flux.children.length > 3) flux.lastChild.remove();
-document.getElementById("c-euros").textContent = euros + " €"; document.getElementById("c-cmd").textContent = n;
+minute += reduit ? 60 : 4;
+const m = (23 * 60 + minute) % (24 * 60);
+h.textContent = String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0");
+while (i < SCENE.length && SCENE[i][0] <= minute) {
+const [, type, a, b, c] = SCENE[i++];
+if (type === "msg") ajouter(`<div class="ligne-msg">${avatar}<div class="bul">${a}</div></div>`);
+if (type === "bouton") ajouter(`<div class="ligne-msg"><span class="av-mini" style="visibility:hidden"></span><div class="btn-inline">${a}</div></div>`);
+if (type === "ok") { ajouter(`<div class="ligne-msg">${avatar}<div class="bul ok">${a}</div></div>`); euros += b; n += 1; maj(); vibre("light"); }
+if (type === "etoiles") ajouter(`<div class="ligne-msg">${avatar}<div class="etoiles"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>`);
+if (type === "chip") { ajouter(`<span class="chip">${MI.panier}Commande ${a} · <b>+${b} €</b> · ${c}</span>`); euros += b; n += 1; maj(); }
 }
-if (minute >= 31 * 60) { clearInterval(minuteur); h.textContent = "07:00"; }
-}, 60);
+if (minute >= 480) { clearInterval(minuteur); h.textContent = "07:00"; }
+}, 70);
 }
 document.getElementById("rejouer").addEventListener("click", nuit);
 nuit();
