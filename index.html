@@ -31,13 +31,13 @@ color-scheme: dark;
 --carte2: #101a16;
 --f-titre: "Anton", "Arial Narrow", sans-serif;
 --f-ui: "Barlow Condensed", "Arial Narrow", sans-serif;
---f-texte: "Manrope", system-ui, sans-serif;
+--f-texte: "Barlow Condensed", "Arial Narrow", sans-serif;
 --nav-h: 68px;
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 [hidden] { display: none !important; }
 html, body { margin: 0; background: var(--page); color: var(--blanc); }
-body { font-family: var(--f-texte); font-size: 15px; line-height: 1.5; min-height: 100vh; overflow-x: hidden; }
+body { font-family: var(--f-texte); font-size: 17px; font-weight: 500; line-height: 1.4; min-height: 100vh; overflow-x: hidden; }
 button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
@@ -106,7 +106,17 @@ h3 { font-size: 30px; }
 .noeud.fort b { color: var(--sur-vert); background: linear-gradient(180deg, var(--menthe-claire), var(--emeraude)); box-shadow: 0 0 0 5px rgba(4, 10, 8, .9), 0 0 22px rgba(46, 230, 160, .6); }
 .noeud span { font-size: 12.5px; line-height: 1.3; color: var(--doux); }
 .noeud.fort span { color: var(--blanc); font-weight: 700; }
-.pitch-fin { margin: 0; font-size: 14px; color: var(--gris); }
+.pitch-fin { margin: 0; font-size: 16px; color: var(--gris); text-align: center; }
+.pitch-bas { margin: 26px auto 0; }
+.lead-site { font-family: var(--f-ui); font-weight: 600; font-size: 18px; line-height: 1.35; color: var(--doux); max-width: 36ch; margin: 4px auto 0; text-align: center; }
+.hero .actions.actions-site { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: none; margin-top: 8px; }
+.pill { border-radius: 999px; padding: 14px 26px; font-family: var(--f-ui); font-weight: 800; font-size: 17px; letter-spacing: .03em; text-transform: uppercase; transition: transform .15s, box-shadow .2s, background .2s; }
+.pill:active { transform: scale(.97); }
+.pill:focus-visible { outline: 2px solid var(--menthe-claire); outline-offset: 3px; }
+.pill-vert { background: var(--emeraude); color: #031a10; box-shadow: 0 8px 26px rgba(0, 200, 120, .35); }
+.pill-vert:hover { background: var(--menthe); }
+.pill-noir { background: #030806; color: var(--blanc); box-shadow: inset 0 0 0 2px var(--blanc); }
+.pill-noir:hover { background: #0b1511; }
 .dodo { position: absolute; width: 58px; height: 66px; pointer-events: none; z-index: 3; }
 .dodo i { position: absolute; bottom: 0; left: 0; font-family: var(--f-titre); font-style: normal; line-height: 1; color: var(--menthe-claire);
   text-shadow: 0 0 10px rgba(46, 230, 160, .8), 0 0 2px rgba(255, 255, 255, .6); opacity: 0; animation: dodo 3.3s ease-in infinite; }
@@ -349,7 +359,14 @@ font-family: var(--f-ui); font-weight: 800; font-size: 11.5px; letter-spacing: .
 <img class="mascotte m-webby" src="https://onlyweb-telegram-atelier.lovable.app/mascots/webby.svg" alt="">
 <span class="surtitre">L'agence digitale de la commu Telegram</span>
 <h1>Ton business tourne.<br><span class="vert">Même quand tu dors.</span></h1>
-<div class="pitch">
+<p class="lead lead-site">Sites, bots de commande et vidéos animées pour les business Telegram. Tes clients commandent en un clic, toi tu encaisses. On s'occupe de tout le reste.</p>
+<div class="actions actions-site">
+<button class="pill pill-vert" data-aller="offres">Voir les packs</button>
+<button class="pill pill-noir" data-aller="contact">Nous écrire sur Telegram</button>
+</div>
+</div>
+<div class="defile" aria-hidden="true"><div id="defile"></div></div>
+<div class="pitch pitch-bas">
 <div class="services">
 <span class="srv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/><rect width="5" height="7" x="16" y="14" rx="1"/></svg></i>Sites</span>
 <span class="srv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg></i>Bots de commande</span>
@@ -362,19 +379,6 @@ font-family: var(--f-ui); font-weight: 800; font-size: 11.5px; letter-spacing: .
 </div>
 <p class="pitch-fin">On s'occupe de <b>tout le reste</b>.</p>
 </div>
-<div class="actions">
-<button class="cta cta-main" data-aller="offres">
-<span class="cta-texte"><small>Dès 120 € · offre de lancement</small>Voir les offres</span>
-<span class="cta-rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-</button>
-<button class="cta cta-tg" data-aller="contact">
-<span class="cta-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></span>
-<span class="cta-texte"><small><i class="ping"></i>Un humain te répond</small>Nous écrire sur Telegram</span>
-<span class="cta-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
-</button>
-</div>
-</div>
-<div class="defile" aria-hidden="true"><div id="defile"></div></div>
 <div class="atouts">
 <div class="atout"><b>7-10 J</b><span>livré, fait jusqu'au bout</span></div>
 <div class="atout"><b>2X</b><span>paiement 50 % / 50 %</span></div>
