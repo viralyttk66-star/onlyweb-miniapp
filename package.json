@@ -1,0 +1,11 @@
+{
+  "name": "onlyweb-miniapp",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "esbuild": "0.20.2",
+    "three": "0.160.0"
+  }
+}
