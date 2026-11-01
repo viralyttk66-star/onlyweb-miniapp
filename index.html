@@ -86,7 +86,28 @@ h3 { font-size: 30px; }
 .hero h1 { margin-top: 8px; padding-inline: 34px; }
 .hero .lead { margin-inline: auto; }
 .hero .actions { display: grid; gap: 12px; width: 100%; max-width: 400px; margin-top: 10px; }
-.lead-pro { color: var(--doux); }
+.pitch { width: 100%; max-width: 400px; display: grid; gap: 14px; margin-top: 4px; }
+.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.srv { min-width: 0; display: grid; justify-items: center; gap: 8px; padding: 13px 6px 12px; border-radius: 18px; text-align: center;
+  font-family: var(--f-ui); font-weight: 800; font-size: 13px; letter-spacing: .07em; text-transform: uppercase; line-height: 1.1; color: var(--blanc);
+  background: linear-gradient(180deg, rgba(20, 40, 32, .85), rgba(6, 14, 11, .85)); box-shadow: inset 0 0 0 1px rgba(232, 238, 236, .12), inset 0 1px 0 rgba(255, 255, 255, .07); }
+.srv i { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; color: var(--sur-vert);
+  background: linear-gradient(180deg, var(--menthe-claire), var(--emeraude)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), 0 6px 16px rgba(0, 200, 120, .35); }
+.srv i svg { width: 20px; height: 20px; }
+.parcours { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); padding: 16px 6px 14px; border-radius: 20px;
+  background: radial-gradient(80% 140% at 50% 0%, rgba(46, 230, 160, .12), transparent 70%), rgba(4, 10, 8, .7); box-shadow: inset 0 0 0 1px rgba(46, 230, 160, .22); }
+.parcours::before { content: ""; position: absolute; left: 16.6%; right: 16.6%; top: 38px; height: 2px; background: linear-gradient(90deg, rgba(46, 230, 160, .25), rgba(46, 230, 160, .6), rgba(46, 230, 160, .25)); }
+.parcours::after { content: ""; position: absolute; top: 34px; left: 16.6%; width: 10px; height: 10px; border-radius: 50%; background: var(--menthe-claire);
+  box-shadow: 0 0 12px 3px var(--menthe); animation: voyage 2.8s cubic-bezier(.6, 0, .4, 1) infinite; }
+@keyframes voyage { 0% { left: calc(16.6% - 5px); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: calc(83.4% - 5px); opacity: 0; } }
+.noeud { position: relative; z-index: 1; display: grid; justify-items: center; gap: 8px; text-align: center; }
+.noeud b { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-titre); font-weight: 400; font-size: 15px; text-transform: uppercase; color: var(--menthe);
+  background: #06120d; box-shadow: inset 0 0 0 2px rgba(46, 230, 160, .55), 0 0 0 5px rgba(4, 10, 8, .9); }
+.noeud.fort b { color: var(--sur-vert); background: linear-gradient(180deg, var(--menthe-claire), var(--emeraude)); box-shadow: 0 0 0 5px rgba(4, 10, 8, .9), 0 0 22px rgba(46, 230, 160, .6); }
+.noeud span { font-size: 12.5px; line-height: 1.3; color: var(--doux); }
+.noeud.fort span { color: var(--blanc); font-weight: 700; }
+.pitch-fin { margin: 0; font-size: 14px; color: var(--gris); }
+.pitch-fin b { color: var(--blanc); }
 .lead-pro .hl { color: var(--blanc); font-weight: 700; background: linear-gradient(transparent 60%, rgba(46, 230, 160, .3) 60%, rgba(46, 230, 160, .3) 92%, transparent 92%); padding: 0 2px; border-radius: 3px; }
 .lead-pro b { color: var(--menthe); font-weight: 800; }
 @property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
@@ -314,7 +335,19 @@ font-family: var(--f-ui); font-weight: 800; font-size: 11.5px; letter-spacing: .
 <img class="mascotte m-webby" src="https://onlyweb-telegram-atelier.lovable.app/mascots/webby.svg" alt="">
 <span class="surtitre">L'agence digitale de la commu Telegram</span>
 <h1>Ton business tourne.<br><span class="vert">Même quand tu dors.</span></h1>
-<p class="lead lead-pro"><span class="hl">Sites</span>, <span class="hl">bots de commande</span> et <span class="hl">visuels animés</span> pour les business Telegram. Tes clients commandent <b>en un clic</b>, toi tu encaisses. On s'occupe de tout le reste.</p>
+<div class="pitch">
+<div class="services">
+<span class="srv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/><rect width="5" height="7" x="16" y="14" rx="1"/></svg></i>Sites</span>
+<span class="srv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg></i>Bots de commande</span>
+<span class="srv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg></i>Visuels animés</span>
+</div>
+<div class="parcours" role="list" aria-label="Comment ça marche">
+<div class="noeud" role="listitem"><b>1 clic</b><span>ton client<br>commande</span></div>
+<div class="noeud fort" role="listitem"><b>24/7</b><span>ton bot<br>encaisse</span></div>
+<div class="noeud" role="listitem"><b>Zzz</b><span>toi,<br>tu dors</span></div>
+</div>
+<p class="pitch-fin">On s'occupe de <b>tout le reste</b>.</p>
+</div>
 <div class="actions">
 <button class="cta cta-main" data-aller="offres">
 <span class="cta-texte"><small>Dès 120 € · offre de lancement</small>Voir les offres</span>
