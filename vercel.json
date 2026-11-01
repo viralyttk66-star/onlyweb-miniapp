@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "http://51.83.6.68:20074/miniapp/:path*"
+    }
+  ]
+}

@@ -633,11 +633,18 @@ if (!nom || !vente) { err.textContent = "Indique au moins le nom de ton activit�
 err.hidden = true;
 const brief = { type: "brief", offre: offreChoisie, nom, vente, tg: document.getElementById("f-tg").value.trim(),
 couleurs: [...couleursChoisies], logo: aLogo, plus: document.getElementById("f-plus").value.trim() };
+const envoi = document.querySelector("#formulaire button[type=submit]");
+envoi.disabled = true; envoi.style.opacity = ".6";
+let ok = !(tg && tg.initData);
 try {
 if (tg && tg.initData) {
-await fetch("/api/brief", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ initData: tg.initData, brief }) });
+const r = await fetch("/api/brief", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ initData: tg.initData, brief }) });
+const j = await r.json().catch(() => ({}));
+ok = r.ok && j.ok;
 }
-} catch (x) {}
+} catch (x) { ok = false; }
+envoi.disabled = false; envoi.style.opacity = "";
+if (!ok) { err.textContent = "Envoi impossible pour le moment. Écris-nous directement dans le chat, on s'en occupe."; err.hidden = false; try { tg && tg.HapticFeedback.notificationOccurred("error"); } catch (x) {} return; }
 try { tg && tg.HapticFeedback.notificationOccurred("success"); } catch (x) {}
 dernierBrief = brief;
 document.getElementById("brief-form").hidden = true;
@@ -645,25 +652,46 @@ document.getElementById("brief-ok").hidden = false;
 window.scrollTo(0, 0);
 });
 let dernierBrief = null;
-function dessinerSuivi() {
-const ex = { num: "OW-0012", offre: dernierBrief ? OFFRES.find(o => o.id === dernierBrief.offre).nom : "Automatique",
-prix: dernierBrief ? OFFRES.find(o => o.id === dernierBrief.offre).prix : 279, etape: dernierBrief ? 0 : 2 };
-const pct = Math.round(ex.etape / (ETAPES.length - 1) * 100);
-const suivant = ETAPES[ex.etape + 1];
-document.getElementById("projets").innerHTML = `<article class="projet">
-<div class="tete"><span class="num">PROJET ${ex.num}</span><span class="etiquette on">${ex.offre} · ${ex.prix} €</span></div>
-<div class="progression"><div class="jauge"><i style="width:0%" id="jauge"></i></div><span class="pct">${pct} %</span></div>
-<div class="frise"><span class="rempli" id="rempli" style="width:0%"></span>
-${ETAPES.map(([n], i) => `<div class="pas ${i < ex.etape ? "fait" : i === ex.etape ? "actuel" : ""}"><i>${i < ex.etape ? ICONES.coche : i + 1}</i><span>${n}</span></div>`).join("")}</div>
-<div class="etat"><small>ÉTAPE ACTUELLE</small><b>${ETAPES[ex.etape][0]}</b><span>${ETAPES[ex.etape][1]}</span></div>
-${suivant ? `<div class="etat ensuite"><small>ENSUITE</small><b>${suivant[0]}</b><span>${suivant[1]}</span></div>` : ""}
+async function dessinerSuivi() {
+const zone = document.getElementById("projets");
+if (tg && tg.initData) {
+zone.innerHTML = '<p class="exemple">Chargement de tes projets…</p>';
+try {
+const r = await fetch("/api/projets?initData=" + encodeURIComponent(tg.initData));
+const j = await r.json();
+if (j.ok) {
+zone.innerHTML = j.projets.length ? j.projets.map(p => carteProjet(p, j.etapes)).join("") : vide();
+animerJauges(); return;
+}
+} catch (e) {}
+zone.innerHTML = '<p class="exemple">Impossible de charger tes projets pour le moment. Réessaie dans un instant.</p>';
+return;
+}
+zone.innerHTML = carteProjet({ numero: "OW-0012", offre: "Automatique", total: 27900, etape: 2 }, ETAPES) +
+'<p class="exemple">Exemple de suivi · tes vrais projets apparaîtront ici dans Telegram.</p>';
+animerJauges();
+}
+function vide() {
+return `<div class="hesite"><img src="https://onlyweb-telegram-atelier.lovable.app/mascots/colis.svg" alt=""><h3>Aucun projet</h3><p>Lance ton projet en 2 minutes : on le suit ici, étape par étape.</p><button class="btn btn-blanc" style="width:fit-content" data-aller="brief">Lancer mon projet</button></div>`;
+}
+function carteProjet(p, etapes) {
+const annule = p.etape < 0, e = Math.max(0, p.etape);
+const pct = annule ? 0 : Math.round(e / (etapes.length - 1) * 100);
+const suivant = etapes[e + 1];
+const euros = p.total % 100 ? (p.total / 100).toFixed(2).replace(".", ",") : p.total / 100;
+return `<article class="projet">
+<div class="tete"><span class="num">PROJET ${p.numero}</span><span class="etiquette on">${p.offre} · ${euros} €</span></div>
+${annule ? `<div class="etat ensuite"><small>STATUT</small><b>Annulé</b><span>Une question ? Écris-nous dans le chat.</span></div>` : `
+<div class="progression"><div class="jauge"><i style="width:0%" data-pct="${pct}"></i></div><span class="pct">${pct} %</span></div>
+<div class="frise"><span class="rempli" style="width:0%" data-pct="${pct * .8}"></span>
+${etapes.map(([n], i) => `<div class="pas ${i < e ? "fait" : i === e ? "actuel" : ""}"><i>${i < e ? ICONES.coche : i + 1}</i><span>${n}</span></div>`).join("")}</div>
+<div class="etat"><small>ÉTAPE ACTUELLE</small><b>${etapes[e][0]}</b><span>${etapes[e][1]}</span></div>
+${suivant ? `<div class="etat ensuite"><small>ENSUITE</small><b>${suivant[0]}</b><span>${suivant[1]}</span></div>` : ""}`}
 <button class="btn btn-contour" data-aller="contact">Une question sur mon projet</button>
-</article>
-<p class="exemple">${dernierBrief ? "Ton brief vient d'arriver : on te répond dans le chat." : "Exemple de suivi · tes vrais projets apparaîtront ici."}</p>`;
-requestAnimationFrame(() => requestAnimationFrame(() => {
-document.getElementById("jauge").style.width = pct + "%";
-document.getElementById("rempli").style.width = (pct * .8) + "%";
-}));
+</article>`;
+}
+function animerJauges() {
+requestAnimationFrame(() => requestAnimationFrame(() => document.querySelectorAll("[data-pct]").forEach(x => { x.style.width = x.dataset.pct + "%"; })));
 }
 </script>
 </body>
