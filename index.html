@@ -85,7 +85,48 @@ h3 { font-size: 30px; }
 .hero { position: relative; padding: 18px 0 8px; text-align: center; display: grid; justify-items: center; gap: 14px; }
 .hero h1 { margin-top: 8px; padding-inline: 34px; }
 .hero .lead { margin-inline: auto; }
-.hero .actions { display: grid; gap: 10px; width: 100%; max-width: 360px; margin-top: 6px; }
+.hero .actions { display: grid; gap: 12px; width: 100%; max-width: 400px; margin-top: 10px; }
+.lead-pro { color: var(--doux); }
+.lead-pro .hl { color: var(--blanc); font-weight: 700; background: linear-gradient(transparent 60%, rgba(46, 230, 160, .3) 60%, rgba(46, 230, 160, .3) 92%, transparent 92%); padding: 0 2px; border-radius: 3px; }
+.lead-pro b { color: var(--menthe); font-weight: 800; }
+@property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.cta { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; gap: 14px; width: 100%; padding: 9px 9px 9px 22px; border-radius: 22px; text-align: left; transition: transform .2s cubic-bezier(.2, .9, .3, 1.3); }
+.cta:active { transform: scale(.975); }
+.cta:focus-visible { outline: 2px solid var(--menthe-claire); outline-offset: 4px; }
+.cta-texte { position: relative; z-index: 2; flex: 1; min-width: 0; display: grid; font-family: var(--f-titre); font-size: 25px; line-height: 1; text-transform: uppercase; letter-spacing: .01em; }
+.cta-texte small { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; font-family: var(--f-ui); font-weight: 800; font-size: 12.5px; letter-spacing: .13em; }
+.cta-main { color: var(--sur-vert); background: linear-gradient(180deg, #6ff5c4 0%, #2ee6a0 38%, #00c878 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .75), inset 0 -4px 0 rgba(0, 90, 54, .35), 0 0 0 1px rgba(123, 247, 203, .65), 0 16px 40px -8px rgba(0, 200, 120, .7), 0 0 70px rgba(46, 230, 160, .22);
+  animation: respire 3.6s ease-in-out infinite; }
+.cta-main .cta-texte small { color: rgba(3, 26, 16, .72); }
+.cta-main::before { content: ""; position: absolute; inset: 0; z-index: 0; background-image: radial-gradient(rgba(3, 26, 16, .22) 1px, transparent 1.3px); background-size: 7px 7px;
+  -webkit-mask-image: linear-gradient(100deg, transparent 30%, #000 100%); mask-image: linear-gradient(100deg, transparent 30%, #000 100%); }
+.cta-main::after { content: ""; position: absolute; top: -20%; bottom: -20%; width: 45%; left: -60%; z-index: 1; transform: skewX(-20deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .65), transparent); animation: reflet 3.6s ease-in-out infinite; }
+.cta-rond { position: relative; z-index: 2; flex: none; width: 56px; height: 56px; border-radius: 17px; display: grid; place-items: center; color: var(--menthe);
+  background: radial-gradient(120% 120% at 30% 20%, #0b3a26, #031a10 70%); box-shadow: inset 0 0 0 1px rgba(46, 230, 160, .45), inset 0 1px 0 rgba(123, 247, 203, .25), 0 8px 18px rgba(0, 60, 36, .45); }
+.cta-rond svg { width: 24px; height: 24px; animation: pousse 1.8s ease-in-out infinite; }
+.cta-tg { color: var(--blanc); background: linear-gradient(180deg, rgba(14, 30, 24, .9), rgba(4, 10, 8, .92)); box-shadow: inset 0 0 0 1px rgba(232, 238, 236, .14), inset 0 1px 0 rgba(255, 255, 255, .08), 0 14px 34px -12px rgba(0, 0, 0, .8); }
+.cta-tg::before { content: ""; position: absolute; inset: 0; z-index: 1; padding: 1.5px; border-radius: inherit; pointer-events: none;
+  background: conic-gradient(from var(--ang), transparent 0 58%, rgba(46, 230, 160, .15) 66%, var(--menthe) 78%, var(--menthe-claire) 82%, transparent 92%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: tour 4.5s linear infinite; }
+.cta-tg::after { content: ""; position: absolute; inset: 0; z-index: 0; background: radial-gradient(60% 120% at 0% 50%, rgba(46, 230, 160, .16), transparent 70%); }
+.cta-tg { padding-left: 9px; }
+.cta-ico { position: relative; z-index: 2; flex: none; width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; color: var(--sur-vert);
+  background: linear-gradient(180deg, var(--menthe-claire), var(--emeraude)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), 0 6px 18px rgba(0, 200, 120, .4); }
+.cta-ico svg { width: 23px; height: 23px; transform: translate(-1px, 1px); }
+.cta-tg .cta-texte { font-size: 21px; }
+.cta-tg .cta-texte small { color: var(--menthe); }
+.cta-chev { position: relative; z-index: 2; width: 34px; height: 34px; display: grid; place-items: center; color: var(--menthe); opacity: .9; }
+.cta-chev svg { width: 20px; height: 20px; }
+.ping { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--menthe); box-shadow: 0 0 8px var(--menthe); }
+.ping::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--menthe); animation: ping 1.6s ease-out infinite; }
+@keyframes reflet { 0%, 55% { left: -60%; } 100% { left: 130%; } }
+@keyframes respire { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.06) saturate(1.1); } }
+@keyframes pousse { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+@keyframes tour { to { --ang: 360deg; } }
+@keyframes ping { from { transform: scale(.6); opacity: .9; } to { transform: scale(1.8); opacity: 0; } }
 .mascotte { position: absolute; z-index: 2; filter: drop-shadow(0 10px 24px rgba(0, 200, 120, .35)); pointer-events: none; }
 .m-botty { width: 84px; left: -10px; top: 74px; animation: flotte 4.2s ease-in-out infinite; }
 .m-webby { width: 80px; right: -8px; top: 96px; animation: flotte 4.8s ease-in-out infinite .6s; }
@@ -273,11 +314,17 @@ font-family: var(--f-ui); font-weight: 800; font-size: 11.5px; letter-spacing: .
 <img class="mascotte m-webby" src="https://onlyweb-telegram-atelier.lovable.app/mascots/webby.svg" alt="">
 <span class="surtitre">L'agence digitale de la commu Telegram</span>
 <h1>Ton business tourne.<br><span class="vert">Même quand tu dors.</span></h1>
-<p class="lead">Sites, bots de commande et visuels animés pour les business Telegram. Tes clients commandent en un clic, toi tu encaisses. On s'occupe de tout le reste.</p>
+<p class="lead lead-pro"><span class="hl">Sites</span>, <span class="hl">bots de commande</span> et <span class="hl">visuels animés</span> pour les business Telegram. Tes clients commandent <b>en un clic</b>, toi tu encaisses. On s'occupe de tout le reste.</p>
 <div class="actions">
-<button class="btn btn-vert" data-aller="offres">Voir les offres
-<svg class="fleche" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-<button class="btn btn-contour" data-aller="contact">Nous écrire sur Telegram</button>
+<button class="cta cta-main" data-aller="offres">
+<span class="cta-texte"><small>Dès 120 € · offre de lancement</small>Voir les offres</span>
+<span class="cta-rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+</button>
+<button class="cta cta-tg" data-aller="contact">
+<span class="cta-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></span>
+<span class="cta-texte"><small><i class="ping"></i>Un humain te répond</small>Nous écrire sur Telegram</span>
+<span class="cta-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+</button>
 </div>
 </div>
 <div class="defile" aria-hidden="true"><div id="defile"></div></div>
