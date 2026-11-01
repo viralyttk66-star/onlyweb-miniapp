@@ -424,11 +424,76 @@ font-family: var(--f-ui); font-weight: 800; font-size: 11.5px; letter-spacing: .
 .hero-titre .mascotte { position: relative; left: auto; right: auto; top: auto; width: clamp(40px, 11vw, 62px); height: auto; }
 .hero-titre .m-botty { align-self: start; margin-top: 4px; }
 .hero-titre .m-webby { align-self: end; margin-bottom: 4px; }
+/* ===== Brief : le décor prend les couleurs choisies (uniquement sur cette page) ===== */
+@property --c1 { syntax: "<color>"; inherits: true; initial-value: #00c878; }
+@property --c2 { syntax: "<color>"; inherits: true; initial-value: #0a6b45; }
+@property --c3 { syntax: "<color>"; inherits: true; initial-value: #2ee6a0; }
+:root { --c1: #00c878; --c2: #0a6b45; --c3: #2ee6a0; --on1: #04140d;
+  transition: --c1 .9s ease, --c2 .9s ease, --c3 .9s ease; }
+.teinte { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; opacity: 0; transition: opacity .9s ease; }
+body.sur-brief.teinte-on .teinte { opacity: 1; }
+.teinte i { position: absolute; border-radius: 50%; opacity: .34; filter: blur(30px); will-change: transform; }
+.teinte i:nth-child(1) { width: 95vmax; height: 95vmax; left: -42vmax; top: -38vmax; background: radial-gradient(closest-side, var(--c1), transparent); animation: teinte-a 18s ease-in-out infinite; }
+.teinte i:nth-child(2) { width: 80vmax; height: 80vmax; right: -40vmax; top: 22vh; background: radial-gradient(closest-side, var(--c2), transparent); animation: teinte-b 22s ease-in-out infinite; }
+.teinte i:nth-child(3) { width: 70vmax; height: 70vmax; left: -10vmax; bottom: -42vmax; background: radial-gradient(closest-side, var(--c3), transparent); opacity: .26; animation: teinte-a 26s ease-in-out infinite reverse; }
+@keyframes teinte-a { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(6vmax, 4vmax) scale(1.08); } }
+@keyframes teinte-b { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-5vmax, -6vmax) scale(.94); } }
+body.sur-brief.teinte-on .etoile { background: var(--c3); box-shadow: 0 0 8px var(--c3); }
+body.sur-brief.teinte-on .fond::after { background-image: linear-gradient(color-mix(in srgb, var(--c1) 22%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--c1) 22%, transparent) 1px, transparent 1px); }
+/* Vague de couleur au moment du choix */
+.vague { position: fixed; z-index: 0; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, var(--v), transparent 70%); opacity: .55; animation: vague 1.1s cubic-bezier(.2, .7, .2, 1) forwards; }
+@keyframes vague { to { transform: scale(60); opacity: 0; } }
+
+/* Pastilles de couleur : ordre, coche, halo dans leur propre couleur */
+.couleur { position: relative; transition: transform .25s cubic-bezier(.3, 1.6, .5, 1), box-shadow .25s; }
+.couleur[aria-pressed="true"] { transform: scale(1.1); border-color: var(--blanc);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .15), 0 0 0 3px var(--page), 0 0 22px var(--sw); animation: pop .35s cubic-bezier(.3, 1.6, .5, 1); }
+.couleur[data-n]::after { content: attr(data-n); position: absolute; right: -6px; top: -6px; width: 19px; height: 19px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--blanc); color: #04140d; font-family: var(--f-ui); font-weight: 800; font-size: 11.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .45); }
+@keyframes pop { 0% { transform: scale(.8); } 100% { transform: scale(1.1); } }
+
+/* Jauge de progression du brief */
+.jauge-brief { display: grid; gap: 7px; }
+.jauge-brief .barre { height: 6px; border-radius: 99px; background: rgba(255, 255, 255, .07); overflow: hidden; }
+.jauge-brief .barre i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--c1), var(--c3));
+  box-shadow: 0 0 12px var(--c1); transition: width .6s cubic-bezier(.2, .8, .2, 1); }
+.jauge-brief small { font-family: var(--f-ui); font-weight: 800; letter-spacing: .07em; text-transform: uppercase; font-size: 12.5px; color: var(--gris); }
+.jauge-brief small b { color: var(--blanc); }
+
+/* Aperçu en direct de la marque */
+.apercu-marque { border-radius: 20px; overflow: hidden; border: 1.5px solid rgba(255, 255, 255, .1); background: #050907;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .45), 0 0 40px color-mix(in srgb, var(--c1) 22%, transparent); }
+.apercu-marque .barre-nav { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #0b110e; border-bottom: 1px solid rgba(255, 255, 255, .06); }
+.apercu-marque .barre-nav i { width: 8px; height: 8px; border-radius: 50%; background: #2a332f; }
+.apercu-marque .barre-nav i:first-child { background: var(--c1); }
+.apercu-marque .barre-nav span { margin-left: 6px; flex: 1; min-width: 0; text-align: center; font-size: 12px; color: var(--gris); background: #050907;
+  border-radius: 99px; padding: 3px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.apercu-marque .scene { position: relative; padding: 18px 16px 16px; display: grid; gap: 10px; isolation: isolate;
+  background: radial-gradient(90% 90% at 100% 0%, color-mix(in srgb, var(--c2) 45%, transparent), transparent 70%),
+    radial-gradient(70% 80% at 0% 100%, color-mix(in srgb, var(--c3) 30%, transparent), transparent 70%), #070b09; }
+.apercu-marque .tete { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.apercu-marque .logo { flex: none; width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: linear-gradient(135deg, var(--c1), var(--c2));
+  color: var(--on1); font-family: var(--f-titre); font-size: 18px; box-shadow: 0 6px 18px color-mix(in srgb, var(--c1) 45%, transparent); }
+.apercu-marque .nom { min-width: 0; font-family: var(--f-titre); font-size: 24px; line-height: 1; text-transform: uppercase; overflow-wrap: anywhere; }
+.apercu-marque .accroche { margin: 0; font-size: 13.5px; color: var(--doux); line-height: 1.35; min-height: 1.35em; }
+.apercu-marque .actions-ap { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.apercu-marque .cta-ap { border-radius: 99px; padding: 8px 14px; background: var(--c1); color: var(--on1); font-family: var(--f-ui); font-weight: 800; font-size: 12.5px;
+  letter-spacing: .06em; text-transform: uppercase; box-shadow: 0 4px 0 rgba(0, 0, 0, .45); }
+.apercu-marque .nuancier { display: flex; gap: 5px; margin-left: auto; }
+.apercu-marque .nuancier i { width: 16px; height: 16px; border-radius: 5px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25); }
+.apercu-marque .vide { font-size: 12px; color: var(--gris); }
+.apercu-legende { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--gris); }
+.apercu-legende::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--c1); box-shadow: 0 0 8px var(--c1); animation: rdPulseBrief 1.6s ease-in-out infinite; }
+@keyframes rdPulseBrief { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { :root { transition: none; } .vague { display: none; } }
 </style>
 <!--RD-->
 </head>
 <body>
 <div class="fond" id="fond" aria-hidden="true"></div>
+<div class="teinte" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="app">
 <header class="entete">
 <span class="puce"><i></i>ONLYWEB</span>
@@ -546,6 +611,7 @@ font-family: var(--f-ui); font-weight: 800; font-size: 11.5px; letter-spacing: .
 <span class="surtitre" style="width:fit-content">Étape 1 / 4 · Ton brief</span>
 <h2>Ton projet <span class="vert">en 2 minutes.</span></h2>
 <div class="etapes" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
+<div class="jauge-brief"><div class="barre"><i id="jauge-brief-barre"></i></div><small id="jauge-brief-txt">Brief complété à <b>0 %</b></small></div>
 </header>
 <form class="formulaire" id="formulaire" style="margin-top:22px" novalidate>
 <div class="champ"><span class="lbl">Ton offre</span>
@@ -559,6 +625,9 @@ font-family: var(--f-ui); font-weight: 800; font-size: 11.5px; letter-spacing: .
 <div class="champ"><span class="lbl">Tes couleurs</span>
 <div class="couleurs" id="couleurs"></div>
 <span class="aide">Choisis jusqu'à 3 couleurs, ou laisse-nous proposer.</span></div>
+<div class="champ"><span class="lbl">Aperçu de ta marque</span>
+<div class="apercu-marque" aria-hidden="true"><div class="barre-nav"><i></i><i></i><i></i><span id="ap-url">ta-marque.fr</span></div><div class="scene"><div class="tete"><span class="logo" id="ap-logo">T</span><span class="nom" id="ap-nom">Ta marque</span></div><p class="accroche" id="ap-accroche">Ce que tu vends s'affichera ici.</p><div class="actions-ap"><span class="cta-ap">Commander</span><span class="nuancier" id="ap-nuancier"></span></div></div></div>
+<span class="apercu-legende">Se met à jour pendant que tu remplis le brief.</span></div>
 <div class="champ"><span class="lbl">Tu as déjà un logo ?</span>
 <div class="oui-non" id="logo"><button type="button" aria-pressed="false" data-v="oui">Oui</button><button type="button" aria-pressed="false" data-v="non">Pas encore</button></div>
 <span class="aide">Tu pourras nous l'envoyer directement dans le chat.</span></div>
@@ -887,6 +956,106 @@ ${suivant ? `<div class="etat ensuite"><small>ENSUITE</small><b>${suivant[0]}</b
 function animerJauges() {
 requestAnimationFrame(() => requestAnimationFrame(() => document.querySelectorAll("[data-pct]").forEach(x => { x.style.width = x.dataset.pct + "%"; })));
 }
+</script>
+<script>
+/* Brief : décor aux couleurs choisies, aperçu de la marque en direct, jauge de progression. */
+(function () {
+  var root = document.documentElement;
+  var vue = document.getElementById("v-brief");
+  var form = document.getElementById("formulaire");
+  if (!vue || !form) return;
+  var DEFAUT = ["#00c878", "#0a6b45", "#2ee6a0"];
+  var $ = function (id) { return document.getElementById(id); };
+
+  // La teinte ne s'applique que sur la page du brief.
+  function surBrief() {
+    var actif = vue.classList.contains("active");
+    document.body.classList.toggle("sur-brief", actif);
+    if (actif) setTimeout(tout, 0);
+  }
+  new MutationObserver(surBrief).observe(vue, { attributes: true, attributeFilter: ["class"] });
+  surBrief();
+
+  function luminance(hex) {
+    var n = parseInt(hex.slice(1), 16), r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+    var f = function (c) { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+  }
+  function choisies() { try { return Array.from(couleursChoisies); } catch (e) { return []; } }
+  function slug(s) {
+    return (s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 22);
+  }
+
+  function peindre() {
+    var cs = choisies();
+    var c = cs.length ? cs : DEFAUT;
+    var c1 = c[0], c2 = c[1] || c[0], c3 = c[2] || c[1] || c[0];
+    root.style.setProperty("--c1", c1);
+    root.style.setProperty("--c2", c2);
+    root.style.setProperty("--c3", c3);
+    root.style.setProperty("--on1", luminance(c1) > 0.45 ? "#04140d" : "#ffffff");
+    document.body.classList.toggle("teinte-on", cs.length > 0);
+    // Numéro d'ordre et halo sur chaque pastille choisie.
+    document.querySelectorAll(".couleur").forEach(function (b) {
+      var i = cs.indexOf(b.dataset.c);
+      b.style.setProperty("--sw", b.dataset.c);
+      if (i >= 0) b.setAttribute("data-n", i + 1); else b.removeAttribute("data-n");
+    });
+    var aide = document.querySelector("#couleurs + .aide");
+    if (aide) aide.textContent = cs.length === 0 ? "Choisis jusqu'à 3 couleurs, ou laisse-nous proposer."
+      : cs.length === 3 ? "3 couleurs choisies. Touche une couleur pour la retirer."
+      : cs.length + " couleur" + (cs.length > 1 ? "s" : "") + " choisie" + (cs.length > 1 ? "s" : "") + ". Encore " + (3 - cs.length) + " possible" + (3 - cs.length > 1 ? "s" : "") + ".";
+    var nuancier = $("ap-nuancier");
+    if (nuancier) nuancier.innerHTML = cs.length ? cs.map(function (x) { return '<i style="background:' + x + '"></i>'; }).join("") : '<span class="vide">Couleurs à définir</span>';
+  }
+
+  function apercu() {
+    var nom = ($("f-nom").value || "").trim();
+    var vente = ($("f-vente").value || "").trim();
+    $("ap-nom").textContent = nom || "Ta marque";
+    $("ap-logo").textContent = (nom || "T").charAt(0).toUpperCase();
+    $("ap-url").textContent = (slug(nom) || "ta-marque") + ".fr";
+    $("ap-accroche").textContent = vente ? (vente.length > 70 ? vente.slice(0, 68) + "…" : vente) : "Ce que tu vends s'affichera ici.";
+  }
+
+  function jauge() {
+    var etapes = [
+      !!document.querySelector('#choix-offres [aria-checked="true"]'),
+      ($("f-nom").value || "").trim().length > 1,
+      ($("f-vente").value || "").trim().length > 3,
+      ($("f-tg").value || "").trim().length > 1,
+      choisies().length > 0,
+      !!document.querySelector('#logo [aria-pressed="true"]')
+    ];
+    var n = etapes.filter(Boolean).length, p = Math.round(n / etapes.length * 100);
+    $("jauge-brief-barre").style.width = p + "%";
+    $("jauge-brief-txt").innerHTML = p === 100 ? "<b>Brief complet</b> · prêt à partir" : "Brief complété à <b>" + p + " %</b>";
+  }
+
+  function tout() { peindre(); apercu(); jauge(); }
+
+  // Après le clic du code existant : on repeint, et une vague part de la pastille choisie.
+  $("couleurs").addEventListener("click", function (e) {
+    var b = e.target.closest(".couleur");
+    if (!b) return;
+    var ajoutee = b.getAttribute("aria-pressed") === "true";
+    tout();
+    if (ajoutee && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      var r = b.getBoundingClientRect(), v = document.createElement("span");
+      v.className = "vague";
+      v.style.left = (r.left + r.width / 2) + "px";
+      v.style.top = (r.top + r.height / 2) + "px";
+      v.style.setProperty("--v", b.dataset.c);
+      document.body.appendChild(v);
+      setTimeout(function () { v.remove(); }, 1200);
+    }
+  });
+  form.addEventListener("input", function () { apercu(); jauge(); });
+  $("logo").addEventListener("click", function () { setTimeout(jauge, 0); });
+  $("choix-offres").addEventListener("click", function () { setTimeout(jauge, 0); });
+  tout();
+  setTimeout(tout, 400); // le pseudo Telegram peut être prérempli juste après le chargement
+})();
 </script>
 </body>
 </html>
