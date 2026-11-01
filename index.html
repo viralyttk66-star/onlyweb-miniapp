@@ -176,10 +176,10 @@ h3 { font-size: 30px; }
 .m-botty { width: 84px; left: -10px; top: 74px; animation: flotte 4.2s ease-in-out infinite; }
 .m-webby { width: 80px; right: -8px; top: 96px; animation: flotte 4.8s ease-in-out infinite .6s; }
 @keyframes flotte { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-10px) rotate(3deg); } }
-.defile { overflow: hidden; margin: 22px -16px 0; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+.defile { overflow: hidden; padding: 14px 0; margin: 22px -16px 0; background: linear-gradient(90deg, rgba(3, 8, 6, .6), rgba(6, 40, 26, .35), rgba(3, 8, 6, .6)); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
 -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
-.defile div { display: flex; gap: 22px; width: max-content; animation: defile 18s linear infinite; font-family: var(--f-titre); font-size: 26px; color: rgba(232, 238, 236, .55); text-transform: uppercase; }
-.defile span.s { color: var(--menthe); }
+.defile div { display: flex; align-items: center; gap: 30px; width: max-content; animation: defile 22s linear infinite; font-family: var(--f-ui); font-weight: 800; font-size: 21px; letter-spacing: .02em; color: rgba(201, 212, 208, .78); text-transform: uppercase; }
+.defile span.s { color: var(--menthe); font-size: 12px; text-shadow: 0 0 8px rgba(46, 230, 160, .7); }
 @keyframes defile { to { transform: translateX(-50%); } }
 .atouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 26px; }
 .atout { border: 1px solid var(--verre-bord); background: var(--verre); border-radius: 18px; padding: 14px 10px; text-align: center; min-width: 0; }
