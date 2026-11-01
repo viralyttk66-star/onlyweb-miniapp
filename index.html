@@ -412,6 +412,18 @@ font-family: var(--f-ui); font-weight: 800; font-size: 11.5px; letter-spacing: .
 .m-botty { left: -40px; width: 110px; }
 .m-webby { right: -40px; width: 104px; }
 }
+/* En-tête : fond pleine largeur, fondu doux (plus de bande noire coupée) */
+.entete { background: none; }
+.entete::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: -22px; left: calc(50% - 50vw); right: calc(50% - 50vw); pointer-events: none;
+  background: linear-gradient(180deg, rgba(2, 6, 4, .94), rgba(2, 6, 4, .7) 55%, rgba(2, 6, 4, 0));
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(#000 50%, transparent); mask-image: linear-gradient(#000 50%, transparent); }
+/* Titre d'accueil : mascottes plus petites, sur les côtés, sans jamais toucher le texte */
+.hero-titre { width: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: clamp(6px, 2.5vw, 14px); margin-top: 8px; }
+.hero-titre h1 { margin: 0; padding: 0; font-size: clamp(32px, 9.6vw, 56px); }
+.hero-titre .mascotte { position: relative; left: auto; right: auto; top: auto; width: clamp(40px, 11vw, 62px); height: auto; }
+.hero-titre .m-botty { align-self: start; margin-top: 4px; }
+.hero-titre .m-webby { align-self: end; margin-bottom: 4px; }
 </style>
 <!--RD-->
 </head>
@@ -426,10 +438,12 @@ font-family: var(--f-ui); font-weight: 800; font-size: 11.5px; letter-spacing: .
 <main>
 <section class="vue active" id="v-accueil" aria-label="Accueil">
 <div class="hero">
-<img class="mascotte m-botty" src="https://onlyweb-telegram-atelier.lovable.app/mascots/botty.svg" alt="">
-<img class="mascotte m-webby" src="https://onlyweb-telegram-atelier.lovable.app/mascots/webby.svg" alt="">
 <span class="surtitre">L'agence digitale de la commu Telegram</span>
+<div class="hero-titre">
+<img class="mascotte m-botty" src="https://onlyweb-telegram-atelier.lovable.app/mascots/botty.svg" alt="">
 <h1>Ton business tourne.<br><span class="vert">Même quand tu dors.</span></h1>
+<img class="mascotte m-webby" src="https://onlyweb-telegram-atelier.lovable.app/mascots/webby.svg" alt="">
+</div>
 <p class="lead lead-site">Sites, bots de commande et vidéos animées pour les business Telegram. Tes clients commandent en un clic, toi tu encaisses. On s'occupe de tout le reste.</p>
 <div class="actions actions-site">
 <button class="pill pill-vert" data-aller="offres">Voir les packs</button>
